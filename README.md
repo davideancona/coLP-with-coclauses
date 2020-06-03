@@ -1,1 +1,3 @@
-# coLP-with-corules
+# coLP-with-coclauses
+
+Swi-Prolog meta-interpreter supporting Coinductive Logic Programming with coclause
