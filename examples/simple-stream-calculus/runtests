@@ -1,0 +1,2 @@
+#!
+swipl -p folder="../.." -O -t  main simple-stream-calculus.pl
