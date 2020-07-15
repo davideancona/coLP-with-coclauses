@@ -11,7 +11,7 @@ eval(out(X),end,[X]).
 eval(seq(T1,T2),R,S) :- eval(T1,end,S1), eval(T2,R,S2), concat(S1,S2,S). 
 eval(seq(T1,_T2),div,S) :- eval(T1,div,S). 
 
-co(concat(W,_,W)).       %% cofact 
+%co(concat(W,_,W)).       %% cofact 
 co(eval(_T,div,[])). 
 co(eval(seq(T1,_T2),div,S)) :- eval(T1,end,[X|S1]), concat([X|S1],_S2,S). 
 
@@ -21,6 +21,7 @@ main :-
     test_true01,
     test_true02,
     test_true03, 
+    test_true04, 
     test_false01, 
     test_false02, 
     !,
@@ -35,6 +36,8 @@ test_true01 :- solve(eval(seq(out(0),skip),end,[0])).
 test_true02 :- T = seq(T,T), solve(eval(T,div,[])). 
 
 test_true03 :- T = seq(out(1),T), S = [1|S], solve(eval(T,div,S)). 
+
+test_true04 :- T = seq(T,out(1)), solve(eval(T,div,[])).
 
 test_false01 :- T = seq(skip,T), S = [1|S], solve(eval(T,div,S)),!,fail. 
 test_false01. 
