@@ -24,12 +24,13 @@ main :-
     test_true04, 
     test_false01, 
     test_false02, 
+    test_false03, 
     !,
     write('All tests passed').
 
 main :- write('Failed test').
 
-%%% tests r
+%%% tests 
 
 test_true01 :- solve(eval(seq(out(0),skip),end,[0])).
 
@@ -45,5 +46,7 @@ test_false01.
 test_false02 :- T = seq(T,T), S = [1|S], solve(eval(seq(print(1),T),div,S)),!,fail. 
 test_false02. 
 
+test_false03 :- T = seq(T,out(1)), solve(eval(T,_,[1])),!,fail. 
+test_false03. 
 
 
