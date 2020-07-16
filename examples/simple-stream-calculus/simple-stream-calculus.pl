@@ -22,9 +22,11 @@ main :-
     test_true02,
     test_true03, 
     test_true04, 
+    test_true05, 
     test_false01, 
     test_false02, 
     test_false03, 
+    test_false04, 
     !,
     write('All tests passed').
 
@@ -40,6 +42,8 @@ test_true03 :- T = seq(out(1),T), S = [1|S], solve(eval(T,div,S)).
 
 test_true04 :- T = seq(T,out(1)), solve(eval(T,div,[])).
 
+test_true05 :- T = seq(skip,T), solve(eval(T,div,[])).
+
 test_false01 :- T = seq(skip,T), S = [1|S], solve(eval(T,div,S)),!,fail. 
 test_false01. 
 
@@ -48,5 +52,8 @@ test_false02.
 
 test_false03 :- T = seq(T,out(1)), solve(eval(T,_,[1])),!,fail. 
 test_false03. 
+
+test_false04 :- T = seq(skip,T), solve(eval(T,div,[0])),!,fail. 
+test_false04. 
 
 
